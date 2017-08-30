@@ -17,26 +17,13 @@ import '../common/plugin/leaflet.baidu.js';
 import "../common/tile.stamen.js";
 
 import { map, osm, editableLayers, drawnItems } from './basemap.js';
+
+import MiniMap from 'leaflet-minimap';
+
 let gLayer = {};
 
 class Maptypebar {
     init() {
-        map.on('baselayerchange', function(e) {
-            if (e.name.indexOf("百度地图") !== -1) {
-                // map.options.crs = L.CRS.EPSGB3857;
-                //百度地图的时候转化中心坐标
-                /*let ll = [map.getCenter().lng,map.getCenter().lat];
-                let baiduMercator = projzh.ll2bmerc(ll);
-                let center = L.latLng(baiduMercator[1],baiduMercator[0]);
-                console.info(map.getCenter(),ll,baiduMercator,center);
-                map.setView(center);*/
-            } else {
-                // map.options.crs = L.CRS.EPSG3857;
-            }
-            /*map.eachLayer(function(layer) {
-                console.log("layer:", layer);
-            })*/
-        })
         this.initTianDitu();
         this.initGaode();
         this.initGeoq();
@@ -82,7 +69,6 @@ class Maptypebar {
 
         this.baseLayers = baseLayers;
         L.control.layers(baseLayers, { '天地图标注':this.tianDituLayersAnno ,'绘制图层': drawnItems }, { position: 'topleft', collapsed: true }).addTo(map);
-
     }
     initTianDitu() {
         let normalm = L.tileLayer.chinaProvider('TianDiTu.Normal.Map', {
@@ -139,6 +125,7 @@ class Maptypebar {
         this.gaodeLayers = gaodeLayers;
         this.gaodeLayersNormal = normal;
         this.gaodeLayersImage = image;
+
         // L.control.layers(gaodeLayers).addTo(map);
     }
     initGeoq() {

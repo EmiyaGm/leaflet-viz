@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "SET DEBUG=true && webpack-dev-server --history-api-fallback --progress --profile --inline --colors --hot --port 5000 --open",
-    "build": "SET DEBUG=false && webpack -p --progress --profile --colors"
+    "dev": "export DEBUG=true ; webpack-dev-server --history-api-fallback --progress --profile --inline --colors --hot --port 5000 --open",
+    "build": "export DEBUG=false ; webpack -p --progress --profile --colors"
   },
   "author": "",
   "license": "ISC",
@@ -38,6 +38,8 @@
     "leaflet-control-geocoder": "^1.5.4",
     "leaflet-draw": "^0.4.9",
     "leaflet.measurecontrol": "^1.1.0",
+    "leaflet.control.layers.tree":"^0.0.2",
+    "leaflet-minimap":"^3.5.0",
     "proj4": "^2.4.3",
     "proj4leaflet": "^1.0.1",
     "projzh": "^0.5.0",
