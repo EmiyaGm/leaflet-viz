@@ -5,6 +5,8 @@ import "../common/css/Control.OSMGeocoder.css";
 import "../common/leaflet-plugin/Control.OSMGeocoder.js";
 import MiniMap from 'leaflet-minimap';
 import $ from 'jquery';
+import {Location} from './location.js';
+
 
 
 
@@ -31,19 +33,19 @@ let osmGeocoder = new L.Control.OSMGeocoder({
 });
 let attribution = L.control.attribution();
 attribution.setPrefix('中心地址');
-attribution.addAttribution(map.getCenter());
+attribution.addAttribution(new Location().init('高德地图',map.getCenter()));
 attribution.addTo(map);
-let old_center = map.getCenter();
-map.on('zoom',function (e) {
+let old_center = new Location().init('高德地图',map.getCenter());
+map.on('zoomend',function (e) {
     attribution.removeAttribution(old_center);
-    attribution.addAttribution(map.getCenter());
-    old_center = map.getCenter();
+    attribution.addAttribution(new Location().init('高德地图',map.getCenter()));
+    old_center = new Location().init('高德地图',map.getCenter());
     attribution.addTo(map);
 });
-map.on('move',function (e) {
+map.on('moveend',function (e) {
     attribution.removeAttribution(old_center);
-    attribution.addAttribution(map.getCenter());
-    old_center = map.getCenter();
+    attribution.addAttribution(new Location().init('高德地图',map.getCenter()));
+    old_center = new Location().init('高德地图',map.getCenter());
     attribution.addTo(map);
 });
 /**

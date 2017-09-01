@@ -10,6 +10,8 @@ import leafletImage from 'leaflet-image';
 import mControl from '../common/plugin/measureControl.js';//距离量算库,依赖于leaflet-draw
 import mAreaControl from '../common/plugin/measureAreaControl.js';//面积量算库
 import {addClickListenerToPrint} from '../common/plugin/easyPrint.js';//打印成pdf
+import {editableLayers} from './basemap.js';
+
 class Toolbar{
 	init(){
 		this._handlePan();
@@ -17,6 +19,7 @@ class Toolbar{
 		this._handlePosition();
 		this._handlePrint();
 		this._handleView();
+		this._handleMark();
 
 		L.control.measureControl().addTo(map);
 		L.control.measureAreaControl().addTo(map);
@@ -78,6 +81,17 @@ class Toolbar{
             var latlng = L.latLng(30, 104);
             map.flyTo(latlng,5);
 
+        });
+	}
+	_handleMark(){
+        $('#mapbar').on('click', '#mark', (event)=> {
+            console.log(event);
+        	map.on('click',function addPopup(e) {
+                L.marker(e.latlng).addTo(map)
+					.bindPopup("<b>中国</b><br>安徽黄山.")
+					.openPopup();
+                map.off({click: addPopup});
+            });
         });
 	}
 
