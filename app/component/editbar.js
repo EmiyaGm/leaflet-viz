@@ -1,8 +1,12 @@
 import './editbar.scss';
 import '../common/css/leaflet.draw.css';
 
-import {editableLayers} from './basemap.js'
+import {editableLayers} from './basemap.js';
 import draw from 'leaflet-draw'; //矢量画图工具
+import $ from 'jquery';
+
+import {Location} from './location.js';
+
 
 class Editbar {
     init(map) {
@@ -77,7 +81,12 @@ class Editbar {
             //使用[GeoJSON.js](https://github.com/caseycesari/GeoJSON.js)转化为GeoJSON
             //leaflet 中有转化的方法toGeoJSON
             if (type === 'marker') {
-                if(e.layer._latlng) layer.bindPopup('坐标：'+ e.layer._latlng);
+                let address = '';
+                if($('.leaflet-tile-loaded:first').attr('src').indexOf('webrd')>=0){
+                    let location = new Location();
+                    address = location.init('高德地图',layer._latlng);
+                }
+                if(e.layer._latlng) layer.bindPopup('坐标：'+ e.layer._latlng+'<br />'+'地址：'+address);
             } else if (type === 'rectangle' || type === 'polygon') {
                 if(area) layer.bindPopup('面积：'+area);
             }

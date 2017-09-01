@@ -16,7 +16,8 @@ class Toolbar{
 		this._handleZoomToall();
 		this._handlePosition();
 		this._handlePrint();
-		
+		this._handleView();
+
 		L.control.measureControl().addTo(map);
 		L.control.measureAreaControl().addTo(map);
 	}
@@ -72,6 +73,14 @@ class Toolbar{
          	map.locate({watch: true,timeout:1000});  
 		});
 	}
+    _handleView(){
+        $('#mapbar').on('click', '#view', (event)=> {
+            var latlng = L.latLng(30, 104);
+            map.flyTo(latlng,5);
+
+        });
+	}
+
 }
 
 export {Toolbar};

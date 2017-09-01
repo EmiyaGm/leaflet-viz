@@ -50,20 +50,20 @@ class Maptypebar {
             "高德地图": this.gaodeLayersNormal,
             "高德地图影像": this.gaodeLayersImage,
             "百度地图": this.baiduNormal,
-            "百度卫星地图": this.baiduStellite,
-            "Geoq地图": this.normalm1,
-            "Geoq多彩": this.normalm2,
-            "Geoq午夜蓝": this.normalm3,
-            "Geoq灰色": this.normalm4,
-            "Geoq暖色": this.normalm5,
-            "Geoq冷色": this.normalm6,
-            "Mapbox darkV9":this.darkV9,
-            "Mapbox trafficNight":this.trafficNight,
-            "Mapbox satellite":this.satellite,
-            '黑白图': this.tonerLayer,
-            '地形图': this.terrainLayer,
-            '水域图': this.watercolorLayer,
-            '地震图': this.prccEarthquakesLayer
+            "百度卫星地图": this.baiduStellite
+            //"Geoq地图": this.normalm1,
+            //"Geoq多彩": this.normalm2,
+            //"Geoq午夜蓝": this.normalm3,
+            //"Geoq灰色": this.normalm4,
+            //"Geoq暖色": this.normalm5,
+            //"Geoq冷色": this.normalm6,
+            //"Mapbox darkV9":this.darkV9,
+            //"Mapbox trafficNight":this.trafficNight,
+            //"Mapbox satellite":this.satellite,
+            //'黑白图': this.tonerLayer,
+            //'地形图': this.terrainLayer,
+            //'水域图': this.watercolorLayer,
+            //'地震图': this.prccEarthquakesLayer
         };
         // Object.assign(baseLayers,this.geoqLayers);
 
