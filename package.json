@@ -44,6 +44,10 @@
     "proj4leaflet": "^1.0.1",
     "projzh": "^0.5.0",
     "mapbox-gl": "^0.37.0",
-    "mapbox-gl-leaflet": "^0.0.3"    
+    "mapbox-gl-leaflet": "^0.0.3",
+    "leaflet-responsive-popup":"^0.2.0",
+    "leaflet-easybutton":"^2.2.2",
+    "leaflet-ajax":"^2.1.0",
+    "leaflet.zoomslider":"^0.7.0"
   }
 }

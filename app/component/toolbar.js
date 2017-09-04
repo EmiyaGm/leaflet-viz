@@ -5,6 +5,8 @@ import $ from 'jquery';
 import config from './gConfig.js';
 import {map} from './basemap.js';
 import leafletImage from 'leaflet-image';
+import 'leaflet-responsive-popup';
+import {Location} from './location.js';
 // import  'leaflet-easyprint';
 
 import mControl from '../common/plugin/measureControl.js';//距离量算库,依赖于leaflet-draw
@@ -78,18 +80,33 @@ class Toolbar{
 	}
     _handleView(){
         $('#mapbar').on('click', '#view', (event)=> {
-            var latlng = L.latLng(30, 104);
-            map.flyTo(latlng,5);
+
 
         });
 	}
 	_handleMark(){
         $('#mapbar').on('click', '#mark', (event)=> {
-            console.log(event);
         	map.on('click',function addPopup(e) {
-                L.marker(e.latlng).addTo(map)
-					.bindPopup("<b>中国</b><br>安徽黄山.")
-					.openPopup();
+        		let popoptions = {
+        			maxWidth : 500,
+					maxHeight : 800
+				};
+                let popup = L.responsivePopup().setContent('<div class="add_mark card-div-border" style="display: block">' +
+                    '<div class="col-md-12" style="color: #999999;margin-bottom:10px;">添加地图兴趣点</div>' +
+                    '<div class="mauna-form-parent" data-form-name="type"><label class="lava-label" title="所属分类">所属分类</label><div class="mauna-panel-parent"></div></div>' +
+                    '<div class="mauna-form-parent" data-form-name="marker_name"><label class="lava-label" title="兴趣点名称">兴趣点名称</label><div class="mauna-panel-parent"><input type="text" class="form-control " id="" size="" name="marker_name" value=""></div></div>' +
+                    '<div class="mauna-form-parent" data-form-name="icon"><label class="lava-label" title="地图图标">地图图标</label><div class="mauna-panel-parent"></div></div>' +
+                    '<div class="mauna-form-parent" data-form-name="lng_lat"><label class="lava-label" title="经纬度">经纬度</label><div class="mauna-panel-parent"><span id="" class="mauna-form-text user_marker_lnglat">'+e.latlng+'</span></div></div>' +
+                    '<div class="mauna-form-parent" data-form-name="region"><label class="lava-label" title="所在区域"></label><div class="mauna-panel-parent"><span id="region" class="mauna-form-text user_marker_detailaddress">'+new Location().init('高德地图',e.latlng)+'</span></div></div>' +
+                    '<div class="mauna-form-parent" data-form-name="detail_address"><label class="lava-label" title="详细地址">详细地址</label><div class="mauna-panel-parent"><input type="text" class="form-control " id="" size="" name="detail_address" value=""></div></div>' +
+                    '<div class="mauna-form-parent" data-form-name="radius_range"><label class="lava-label" title="半径范围">半径范围</label><div class="mauna-panel-parent after"><input type="number" class="form-control " id="" max="" min="1" name="radius_range" value="1000">米</div></div>' +
+                    '<div class="mauna-form-parent" data-form-name="display_level"><label class="lava-label" title="显示级别">显示级别</label><div class="mauna-panel-parent"></div></div>' +
+                    '<div class="mauna-form-parent" data-form-name="undefined"> <button id="marker_submit_button" class="btn btn-primary btn-sm center-block">保存</button></div>' +
+                    '</div>',popoptions);
+                L.marker(e.latlng,{icon:new L.DivIcon.SVGIcon()}).addTo(map).bindPopup(popup,popoptions).openPopup();
+                $('#marker_submit_button').click(function() {
+                    console.log('保存');
+                });
                 map.off({click: addPopup});
             });
         });

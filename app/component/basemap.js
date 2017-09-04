@@ -6,6 +6,8 @@ import "../common/leaflet-plugin/Control.OSMGeocoder.js";
 import MiniMap from 'leaflet-minimap';
 import $ from 'jquery';
 import {Location} from './location.js';
+//import 'leaflet.zoomslider';
+import '../common/leaflet-plugin/svg-icon.js';
 
 
 
@@ -13,7 +15,7 @@ import {Location} from './location.js';
 let map = L.map('map',{
 	crs:L.CRS.EPSG3857, //默认墨卡托投影 ESPG：3857
     attributionControl: false
-}).setView([30, 104], 5); 
+}).setView([30, 104], 5);
 let osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
 osm.addTo(map);
 L.control.scale().addTo(map); //比例尺
