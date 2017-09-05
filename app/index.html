@@ -108,6 +108,14 @@
     .mauna-form-parent>.mauna-panel-parent{
         width: auto;
     }
+        #mark{
+            background: url('./app/common/imgs/view_point.png');
+            background-repeat:no-repeat;
+        }
+        #view{
+            background: url('./app/common/imgs/view_control.png');
+            background-repeat:no-repeat;
+        }
     </style>
 </head>
 
@@ -120,15 +128,15 @@
             <!-- <div id="area" class="t-item" title="测面积"></div> -->
             <div id="myposition" class="t-item" title="定位"></div>
             <!--<div id="click2find" class="t-item" title="点查询"></div>-->
-            <div id="view" class="t-item" title="视野"></div>
+            <div id="mark" class="t-item" title="标注"></div>
 
-            <div class="t-item btn-group" style="vertical-align: inherit">
+            <div id="view" class="t-item btn-group" style="vertical-align: bottom;" title="视野">
                 <div type="button" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    视野
+
                 </div>
                 <ul class="dropdown-menu">
-                    <li><a href="#">test1</a></li>
-                    <li><a href="#">test2</a></li>
+                    <li><a href="#" style="text-align: center">test1</a></li>
+                    <li><a href="#" style="text-align: center">test2</a></li>
                     <li role="separator" class="divider"></li>
                     <li><div href="#" style="width: 50%;text-align: center">+</div><div href="#" style="text-align: center;">-</div></li>
                 </ul>
